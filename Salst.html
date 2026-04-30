@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0a3d48">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>قواعد الذوبان - صف تاسع</title>
+<style>
+  :root {
+    --bg: #0a3d48;
+    --bg-grad1: #0d5c63;
+    --bg-grad2: #14746f;
+    --card: #134e57;
+    --surface: #1a5f6b;
+    --border: #2a7d8c;
+    --text: #e8f9fd;
+    --text-dim: #9fc4cc;
+    --accent: #00d9ff;
+    --accent2: #00ffa3;
+    --success: #00e676;
+    --danger: #ff5252;
+    --warning: #ffab00;
+  }
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Arabic', sans-serif;
+    background: linear-gradient(135deg, var(--bg) 0%, var(--bg-grad1) 50%, var(--bg-grad2) 100%);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+  }
+
+  .app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .header {
+    background: rgba(19, 78, 87, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 12px 16px;
+    padding-top: calc(12px + env(safe-area-inset-top));
+    border-bottom: 2px solid var(--accent);
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2px;
+  }
+
+  .header p {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .memory-box {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    color: var(--bg);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    box-shadow: 0 6px 24px rgba(0, 217, 255, 0.3);
+    line-height: 1.5;
+  }
+
+  .memory-box small {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 4px;
+    opacity: 0.9;
+  }
+
+  .rule-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+
+  .rule-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    color: var(--bg);
+    border-radius: 10px;
+    font-weight: 900;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .rule-title {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .rule-text {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+
+  .rule-text b {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 15px;
+  }
+
+  .examples {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .example-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  .example-item:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tag {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .tag-good {
+    background: rgba(0, 230, 118, 0.25);
+    color: var(--success);
+  }
+
+  .tag-bad {
+    background: rgba(255, 82, 82, 0.25);
+    color: var(--danger);
+  }
+
+  .exception-box {
+    background: rgba(255, 171, 0, 0.15);
+    border: 2px solid var(--warning);
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 10px;
+  }
+
+  .exception-title {
+    color: var(--warning);
+    font-weight: 800;
+    font-size: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .exception-group {
+    margin-bottom: 10px;
+  }
+
+  .exception-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .exception-group-title {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .exception-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .exception-item {
+    background: var(--surface);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--danger);
+    border: 1px solid var(--border);
+  }
+
+  .quiz-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    margin-top: 8px;
+  }
+
+  .quiz-title {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  .quiz-stats {
+    display: flex;
+    justify-content: space-around;
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .quiz-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .quiz-item.correct {
+    border-color: var(--success);
+    background: rgba(0, 230, 118, 0.15);
+  }
+
+  .quiz-item.wrong {
+    border-color: var(--danger);
+    background: rgba(255, 82, 0.15);
+  }
+
+  .quiz-formula {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .quiz-choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* زر بسيط بدون تأثيرات معقدة */
+  .choice-btn {
+    background: var(--bg);
+    border: 2px solid var(--border);
+    color: var(--text);
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .choice-btn:active {
+    transform: scale(0.96);
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  .choice-btn.selected {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  .choice-btn.correct {
+    background: var(--success);
+    color: var(--bg);
+    border-color: var(--success);
+  }
+
+  .choice-btn.wrong {
+    background: var(--danger);
+    color: var(--bg);
+    border-color: var(--danger);
+  }
+
+  .choice-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .quiz-result {
+    display: none;
+    padding: 10px;
+    background: var(--bg);
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    border: 1px solid var(--border);
+    margin-top: 8px;
+  }
+
+  .quiz-result.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .result-icon {
+    font-size: 18px;
+    margin-left: 6px;
+  }
+
+  .finish-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    border: none;
+    color: var(--bg);
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.15s ease;
+    box-shadow: 0 4px 16px rgba(0, 217, 255, 0.3);
+  }
+
+  .finish-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(0, 217, 255, 0.4);
+  }
+
+  .finish-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .final-result {
+    display: none;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    color: var(--bg);
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 12px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 217, 255, 0.4);
+    animation: popIn 0.4s ease;
+  }
+
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .final-result.show {
+    display: block;
+  }
+
+  .final-score {
+    font-size: 48px;
+    font-weight: 900;
+    margin: 10px 0;
+  }
+
+  .final-message {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .reset-btn {
+    width: 100%;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    color: var(--text);
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.15s ease;
+  }
+
+  .reset-btn:active {
+    background: var(--border);
+    transform: scale(0.98);
+  }
+
+  .summary {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    color: var(--bg);
+    border-radius: 14px;
+    padding: 16px;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.8;
+    box-shadow: 0 6px 24px rgba(0, 217, 255, 0.3);
+  }
+
+  .content::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .content::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+
+  .content::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <h1>🧪 قواعد الذوبان</h1>
+      <p>الصف التاسع - اختر ذواب أو غير ذواب</p>
+    </div>
+
+    <div class="content" id="content">
+      <div class="memory-box">
+        💡 القاعدة الذهبية: "ناك نو"<br>
+        <small>Na, K, NH4, NO3 = ذواب دايماً</small>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">1</div>
+        <div class="rule-title">القاعدة 1: ناك نو ✅</div>
+        <div class="rule-text">
+          إذا شفت <b>Na</b> أو <b>K</b> أو <b>NH4</b> أو <b>NO3</b> بالصيغة<br>
+          ← <b>ذواب 100%</b> بدون ما تفكر
+        </div>
+        <div class="examples">
+          <div class="example-item">
+            <span class="tag tag-good">ذواب</span>
+            <span><b>NaCl</b> - كلوريد الصوديوم</span>
+          </div>
+          <div class="example-item">
+            <span class="tag tag-good">ذواب</span>
+            <span><b>K2SO4</b> - كبريتات البوتاسيوم</span>
+          </div>
+          <div class="example-item">
+            <span class="tag tag-good">ذواب</span>
+            <span><b>NH4Cl</b> - كلوريد الأمونيوم</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">2</div>
+        <div class="rule-title">القاعدة 2: الاستثناءات ❌</div>
+        <div class="rule-text">
+          <b>فقط الكبريتات SO4 والكلوريدات Cl الهم استثناءات</b><br>
+          احفظ هذول 6 بس:
+        </div>
+        <div class="exception-box">
+          <div class="exception-title">⚠️ الاستثناءات الستة:</div>
+          
+          <div class="exception-group">
+            <div class="exception-group-title">🔸 الكبريتات غير الذوابة:</div>
+            <div class="exception-list">
+              <div class="exception-item">BaSO4</div>
+              <div class="exception-item">PbSO4</div>
+              <div class="exception-item">CaSO4</div>
+            </div>
+          </div>
+
+          <div class="exception-group">
+            <div class="exception-group-title">🔸 الكلوريدات غير الذوابة:</div>
+            <div class="exception-list">
+              <div class="exception-item">AgCl</div>
+              <div class="exception-item">PbCl2</div>
+              <div class="exception-item">Hg2Cl2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-num">3</div>
+        <div class="rule-title">القاعدة 3: إذا ما كان "ناك نو" 🤔</div>
+        <div class="rule-text">
+          شيّك على نهاية الصيغة:
+        </div>
+        <div class="examples">
+          <div class="example-item">
+            <span class="tag tag-good">ذواب</span>
+            <span>نهايته <b>Cl</b> ← مثل MgCl2 <small>(ما عدا AgCl, PbCl2, Hg2Cl2)</small></span>
+          </div>
+          <div class="example-item">
+            <span class="tag tag-good">ذواب</span>
+            <span>نهايته <b>SO4</b> ← مثل CuSO4 <small>(ما عدا BaSO4, PbSO4, CaSO4)</small></span>
+          </div>
+          <div class="example-item">
+            <span class="tag tag-bad">غير ذواب</span>
+            <span>نهايته <b>CO3</b> ← مثل CaCO3</span>
+          </div>
+          <div class="example-item">
+            <span class="tag tag-bad">غير ذواب</span>
+            <span>نهايته <b>PO4</b> ← مثل Ca3(PO4)2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-title">📝 اختبر نفسك - 20 سؤال</div>
+        
+        <div class="quiz-stats">
+          <div class="stat-item">
+            <div class="stat-number" id="correctCount">0</div>
+            <div class="stat-label">صح</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="wrongCount">0</div>
+            <div class="stat-label">خطأ</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="answeredCount">0/20</div>
+            <div class="stat-label">مجاب</div>
+          </div>
+        </div>
+        
+        <div class="quiz-item" data-answer="ذواب" data-reason="فيه K من ناك نو">
+          <div class="quiz-formula">KCl</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="غير ذواب" data-reason="من استثناءات الكلوريدات">
+          <div class="quiz-formula">AgCl</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="غير ذواب" data-reason="من استثناءات الكبريتات">
+          <div class="quiz-formula">BaSO4</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="نهايته SO4 وما هو من الاستثناءات">
+          <div class="quiz-formula">MgSO4</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="فيه Na من ناك نو">
+          <div class="quiz-formula">Na2CO3</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="غير ذواب" data-reason="نهايته CO3">
+          <div class="quiz-formula">CaCO3</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="غير ذواب" data-reason="من استثناءات الكلوريدات">
+          <div class="quiz-formula">PbCl2</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="فيه NH4 من ناك نو">
+          <div class="quiz-formula">NH4NO3</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="غير ذواب" data-reason="من استثناءات الكبريتات">
+          <div class="quiz-formula">PbSO4</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="فيه NO3 من ناك نو">
+          <div class="quiz-formula">Cu(NO3)2</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="نهايته Cl وما هو من الاستثناءات">
+          <div class="quiz-formula">CaCl2</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="غير ذواب" data-reason="من استثناءات الكبريتات">
+          <div class="quiz-formula">CaSO4</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="فيه K من ناك نو">
+          <div class="quiz-formula">K3PO4</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="غير ذواب" data-reason="نهايته PO4">
+          <div class="quiz-formula">Ca3(PO4)2</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="فيه Na من ناك نو">
+          <div class="quiz-formula">Na2S</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="نهايته Cl وما هو من الاستثناءات">
+          <div class="quiz-formula">FeCl3</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="نهايته SO4 وما هو من الاستثناءات">
+          <div class="quiz-formula">ZnSO4</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="غير ذواب" data-reason="من استثناءات الكلوريدات">
+          <div class="quiz-formula">Hg2Cl2</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="فيه NH4 من ناك نو">
+          <div class="quiz-formula">(NH4)2CO3</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <div class="quiz-item" data-answer="ذواب" data-reason="فيه K من ناك نو">
+          <div class="quiz-formula">K2CO3</div>
+          <div class="quiz-choices">
+            <button class="choice-btn" onclick="selectAnswer(this, 'ذواب')">ذواب</button>
+            <button class="choice-btn" onclick="selectAnswer(this, 'غير ذواب')">غير ذواب</button>
+          </div>
+          <div class="quiz-result"></div>
+        </div>
+
+        <button class="finish-btn" onclick="finishQuiz()" id="finishBtn">✅ إنهاء الاختبار وعرض النتيجة</button>
+
+        <div class="final-result" id="finalResult">
+          <div class="final-message" id="finalMessage"></div>
+          <div class="final-score" id="finalScore"></div>
+          <button class="reset-btn" onclick="resetQuiz()">🔄 إعادة الاختبار</button>
+        </div>
+      </div>
+
+      <div class="summary">
+        🧠 الخلاصة لصف تاسع:<br>
+        1️⃣ "ناك نو" = ذواب دايماً<br>
+        2️⃣ استثناءات: BaSO4, PbSO4, CaSO4, AgCl, PbCl2, Hg2Cl2<br>
+        3️⃣ الباقي: Cl و SO4 ذواب | CO3 و PO4 غير ذواب
+      </div>
+    </div>
+  </div>
+
+<script>
+  let correctCount = 0;
+  let wrongCount = 0;
+  let answeredCount = 0;
+  const totalQuestions = 20;
+
+  const vibrate = () => {
+    if (navigator.vibrate) navigator.vibrate(10);
+  };
+
+  function selectAnswer(btn, selectedAnswer) {
+    vibrate();
+    
+    const item = btn.closest('.quiz-item');
+    const correctAnswer = item.dataset.answer;
+    const reason = item.dataset.reason;
+    const buttons = item.querySelectorAll('.choice-btn');
+    const resultDiv = item.querySelector('.quiz-result');
+    
+    if (item.classList.contains('answered')) return;
+    item.classList.add('answered');
+    answeredCount++;
+    
+    buttons.forEach(b => b.disabled = true);
+    btn.classList.add('selected');
+    
+    if (selectedAnswer === correctAnswer) {
+      item.classList.add('correct');
+      btn.classList.add('correct');
+      correctCount++;
+      resultDiv.innerHTML = `<span class="result-icon">✅</span> <b>صح!</b> ${reason}`;
+    } else {
+      item.classList.add('wrong');
+      btn.classList.add('wrong');
+      wrongCount++;
+      buttons.forEach(b => {
+        if (b.textContent === correctAnswer) {
+          b.classList.add('correct');
+        }
+      });
+      resultDiv.innerHTML = `<span class="result-icon">❌</span> <b>خطأ!</b> الجواب الصح: <b>${correctAnswer}</b><br>${reason}`;
+    }
+    
+    resultDiv.classList.add('show');
+    updateStats();
+  }
+
+  function updateStats() {
+    document.getElementById('correctCount').textContent = correctCount;
+    document.getElementById('wrongCount').textContent = wrongCount;
+    document.getElementById('answeredCount').textContent = `${answeredCount}/${totalQuestions}`;
+  }
+
+  function finishQuiz() {
+    vibrate();
+    
+    if (answeredCount < totalQuestions) {
+      alert(`لسا ما خلصت! جاوبت على ${answeredCount} من ${totalQuestions} أسئلة`);
+      return;
+    }
+    
+    const percentage = Math.round((correctCount / totalQuestions) * 100);
+    const finalResult = document.getElementById('finalResult');
+    const finalScore = document.getElementById('finalScore');
+    const finalMessage = document.getElementById('finalMessage');
+    
+    finalScore.textContent = `${percentage}%`;
+    
+    if (percentage >= 90) {
+      finalMessage.innerHTML = '🎉 ممتاز! انت فنان بالذوبان';
+    } else if (percentage >= 75) {
+      finalMessage.innerHTML = '👏 جيد جداً! قربت تصير محترف';
+    } else if (percentage >= 60) {
+      finalMessage.innerHTML = '👍 جيد! بس راجع الاستثناءات شوي';
+    } else {
+      finalMessage.innerHTML = '📚 بدك مراجعة! ركز على "ناك نو" والاستثناءات';
+    }
+    
+    finalResult.classList.add('show');
+    document.getElementById('finishBtn').style.display = 'none';
+    
+    finalResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function resetQuiz() {
+    vibrate();
+    
+    document.querySelectorAll('.quiz-item').forEach(item => {
+      item.classList.remove('correct', 'wrong', 'answered');
+      item.querySelector('.quiz-result').classList.remove('show');
+      const btns = item.querySelectorAll('.choice-btn');
+      btns.forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('selected', 'correct', 'wrong');
+      });
+    });
+    
+    correctCount = 0;
+    wrongCount = 0;
+    answeredCount = 0;
+    updateStats();
+    
+    document.getElementById('finalResult').classList.remove('show');
+    document.getElementById('finishBtn').style.display = 'block';
+    
+    document.getElementById('content').scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', function(e) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+      e.preventDefault();
+    }
+    lastTouchEnd = now;
+  }, false);
+
+  document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
+</body>
+</html>
